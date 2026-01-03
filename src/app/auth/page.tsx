@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Info } from "lucide-react";
+import { Info, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,9 +22,9 @@ export default function AuthPage() {
     // Simulation of auth process
     setTimeout(() => {
       setIsLoading(false);
-      toast.success("Login successful. Redirecting to your dashboard...");
+      toast.success("Authentication successful. Opening Curriculum...");
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/curriculum");
       }, 1000);
     }, 1500);
   };
@@ -40,7 +40,7 @@ export default function AuthPage() {
           <TabsTrigger value="login" className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-none text-xs font-bold uppercase tracking-widest transition-all">
             Login
           </TabsTrigger>
-          <TabsTrigger value="register" className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-none text-xs font-bold uppercase tracking-widest transition-all">
+          <TabsTrigger value="register" className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-none text-xs font-bold uppercase tracking-widest transition-all opacity-80">
             Create Account
           </TabsTrigger>
         </TabsList>
@@ -48,26 +48,26 @@ export default function AuthPage() {
         <TabsContent value="login" className="mt-8">
           <Card className="rounded-none border-none shadow-none bg-transparent">
             <CardHeader className="px-0 pt-0 pb-6 space-y-2">
-              <CardTitle className="text-2xl font-bold tracking-tight uppercase">Welcome Back</CardTitle>
+              <CardTitle className="text-2xl font-bold tracking-tight">Welcome Back</CardTitle>
               <CardDescription className="text-muted-foreground">Resume your engineering journey.</CardDescription>
             </CardHeader>
             <form onSubmit={handleAuth}>
               <CardContent className="px-0 space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Email Address</Label>
-                  <Input id="email" type="email" placeholder="name@company.com" required className="rounded-none border-border bg-muted/10 h-10 px-4 focus-visible:ring-accent" />
+                  <Label htmlFor="email" className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/60">Email Address</Label>
+                  <Input id="email" type="email" placeholder="name@company.com" required className="rounded-lg border-border bg-muted/10 h-11 px-4 focus-visible:ring-accent shadow-none" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <Label htmlFor="password" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Password</Label>
-                    <Link href="/auth/forgot-password" title="Recover your password" className="text-[10px] font-bold uppercase tracking-widest text-accent hover:underline">Forgot Password?</Link>
+                    <Label htmlFor="password" className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/60">Password</Label>
+                    <Link href="/auth/forgot-password" title="Recover your password" className="text-[11px] font-bold text-accent hover:underline">Forgot Password?</Link>
                   </div>
-                  <Input id="password" type="password" required className="rounded-none border-border bg-muted/10 h-10 px-4 focus-visible:ring-accent" />
+                  <Input id="password" type="password" required className="rounded-lg border-border bg-muted/10 h-11 px-4 focus-visible:ring-accent shadow-none" />
                 </div>
               </CardContent>
               <CardFooter className="px-0 pt-6">
-                <Button type="submit" className="w-full h-12 rounded-none bg-foreground text-background font-bold uppercase tracking-widest text-xs hover:bg-foreground/90 transition-all" disabled={isLoading}>
-                  {isLoading ? "Logging in..." : "Enter Dashboard"}
+                <Button type="submit" className="w-full h-12 rounded-xl bg-foreground text-background font-bold tracking-tight text-sm hover:bg-foreground/90 transition-all shadow-lg shadow-foreground/5" disabled={isLoading}>
+                  {isLoading ? "Authenticating..." : "Enter System"}
                 </Button>
               </CardFooter>
             </form>
@@ -77,33 +77,21 @@ export default function AuthPage() {
         <TabsContent value="register" className="mt-8">
           <Card className="rounded-none border-none shadow-none bg-transparent">
             <CardHeader className="px-0 pt-0 pb-6 space-y-2">
-              <CardTitle className="text-2xl font-bold tracking-tight uppercase">Join Cognitrained</CardTitle>
-              <CardDescription className="text-muted-foreground">Start your path toward AI-assisted mastery.</CardDescription>
+              <CardTitle className="text-2xl font-bold tracking-tight">Registration Restricted</CardTitle>
+              <CardDescription className="text-muted-foreground italic">
+                Cognitrained is currently in private preview. <br />
+                Direct signup is only available for select users.
+              </CardDescription>
             </CardHeader>
-            <form onSubmit={handleAuth}>
-              <CardContent className="px-0 space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Full Name</Label>
-                  <Input id="name" placeholder="John Doe" required className="rounded-none border-border bg-muted/10 h-10 px-4 focus-visible:ring-accent" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email-reg" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Email Address</Label>
-                  <Input id="email-reg" type="email" placeholder="name@company.com" required className="rounded-none border-border bg-muted/10 h-10 px-4 focus-visible:ring-accent" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password-reg" className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Password</Label>
-                  <Input id="password-reg" type="password" required className="rounded-none border-border bg-muted/10 h-10 px-4 focus-visible:ring-accent" />
-                </div>
-              </CardContent>
-              <CardFooter className="px-0 pt-6 flex flex-col gap-4">
-                <Button type="submit" className="w-full h-12 rounded-none bg-foreground text-background font-bold uppercase tracking-widest text-xs hover:bg-foreground/90 transition-all" disabled={isLoading}>
-                  {isLoading ? "Creating Profile..." : "Create Account"}
-                </Button>
-                <p className="text-[10px] text-muted-foreground text-center">
-                  By joining, you agree to our <Link href="/terms" className="text-accent underline">Terms</Link> and <Link href="/privacy" className="text-accent underline">Privacy Policy</Link>.
+            <CardContent className="px-0 pt-4">
+              <div className="p-6 border border-dashed border-border bg-muted/5 flex flex-col items-center justify-center text-center gap-4">
+                <Lock className="w-8 h-8 text-muted-foreground/30" />
+                <p className="text-xs text-muted-foreground leading-loose">
+                  Access is handled via manual orchestration. <br />
+                  If you are part of a select cohort, please sign in.
                 </p>
-              </CardFooter>
-            </form>
+              </div>
+            </CardContent>
           </Card>
         </TabsContent>
       </Tabs>

@@ -102,7 +102,7 @@ export default function CurriculumPage() {
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
               <div className="space-y-4">
-                <h2 className="text-3xl font-bold tracking-tighter uppercase">Micro-Certifications</h2>
+                <h2 className="text-3xl font-bold tracking-tight">Micro-Certifications</h2>
                 <p className="text-muted-foreground">Rapid-fire entry gates to prove cognitive baseline.</p>
               </div>
               <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-accent">Tier 0 • Free</div>
@@ -131,7 +131,7 @@ export default function CurriculumPage() {
         <section className="px-8 py-32 bg-muted/10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-24">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase">Professional Track</h2>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Professional Track</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Deep-dive certifications for engineers who own their outcomes.
               </p>
@@ -142,9 +142,7 @@ export default function CurriculumPage() {
                 <div key={course.id} className="border border-border bg-background p-10 flex flex-col justify-between hover:border-accent/30 transition-all group">
                   <div className="space-y-8">
                     <div className="flex justify-between items-start">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
                         {course.tier}
-                      </div>
                       <div className="text-xl font-bold">{course.price}</div>
                     </div>
                     
@@ -156,7 +154,7 @@ export default function CurriculumPage() {
                     </div>
 
                     <div className="space-y-4 pt-4">
-                      <div className="text-[10px] font-bold uppercase tracking-widest text-accent">Key Modules</div>
+                      <div className="text-[11px] font-bold text-accent uppercase tracking-wider">Key Modules</div>
                       <ul className="space-y-3">
                         {course.modules.map((mod, i) => (
                           <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -170,10 +168,10 @@ export default function CurriculumPage() {
                   
                   <div className="pt-12">
                     <Link 
-                      href="/pricing"
-                      className="block w-full py-4 border border-border font-bold uppercase tracking-widest text-[10px] text-center hover:bg-foreground hover:text-background transition-all"
+                      href={course.id === "E1" ? "/simulation/intern-paradox" : "/pricing"}
+                      className="block w-full py-4 border border-border font-bold tracking-tight text-xs text-center hover:bg-foreground hover:text-background transition-all rounded-lg"
                     >
-                      Enroll in Level {course.id.slice(1)}
+                      {course.id === "E1" ? "Start Simulation" : `Enroll in ${course.tier}`}
                     </Link>
                   </div>
                 </div>

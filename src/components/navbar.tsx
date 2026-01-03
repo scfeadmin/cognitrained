@@ -42,7 +42,7 @@ export function Navbar() {
               className="object-contain hidden dark:block"
             />
           </div>
-          <span className="text-lg font-bold tracking-tight uppercase">Cognitrained</span>
+          <span className="text-xl font-bold tracking-tight">Cognitrained</span>
         </Link>
       </div>
 
@@ -74,7 +74,7 @@ export function Navbar() {
           <SheetContent side="right" className="w-[300px] sm:w-[400px] border-l border-border bg-background p-8 flex flex-col justify-between">
             <div className="space-y-8">
               <SheetHeader className="text-left">
-                <SheetTitle className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground mb-4">Navigation</SheetTitle>
+                <SheetTitle className="text-sm font-bold tracking-tight text-muted-foreground mb-4">Navigation</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-6">
                 {NAV_LINKS.map((link) => (
@@ -82,7 +82,7 @@ export function Navbar() {
                     key={link.href} 
                     href={link.href} 
                     onClick={() => setIsOpen(false)}
-                    className={`text-2xl font-bold uppercase tracking-tighter hover:text-accent transition-colors ${pathname === link.href ? "text-accent" : "text-foreground"}`}
+                    className={`text-2xl font-bold tracking-tight hover:text-accent transition-colors ${pathname === link.href ? "text-accent" : "text-foreground"}`}
                   >
                     {link.label}
                   </Link>

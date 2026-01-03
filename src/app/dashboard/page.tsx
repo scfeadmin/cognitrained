@@ -19,16 +19,7 @@ const STREAMS = [
   { id: "prod", name: "Product", active: false, icon: <Globe className="w-4 h-4" />, status: "Pipeline" },
 ];
 
-const ENROLLED_COURSES = [
-  {
-    id: "E1",
-    title: "The Cognitive Reset",
-    level: "Level 1",
-    progress: 40,
-    nextTask: "Requirements Engineering Lab",
-    status: "In Progress",
-  },
-];
+const ENROLLED_COURSES: any[] = [];
 
 const AVAILABLE_LEVELS = [
   { id: "E2", name: "The Adversarial Auditor", level: "Level 2", price: "$99", status: "Locked" },
@@ -37,11 +28,11 @@ const AVAILABLE_LEVELS = [
 ];
 
 const MICRO_CERTS_STATUS = [
-  { id: "M01", name: "The Intern Paradox", status: "Certified", date: "Jan 1, 2026" },
-  { id: "M02", name: "Specification as Code", status: "Certified", date: "Jan 2, 2026" },
-  { id: "M03", name: "Context Cartography", status: "In Progress", progress: 75 },
-  { id: "M04", name: "The Hallucination Hunt", status: "Not Started" },
-  { id: "M05", name: "Prompt Entropy", status: "Not Started" },
+  { id: "M01", name: "The Intern Paradox", status: "Not Started", progress: 0 },
+  { id: "M02", name: "Specification as Code", status: "Not Started", progress: 0 },
+  { id: "M03", name: "Context Cartography", status: "Not Started", progress: 0 },
+  { id: "M04", name: "The Hallucination Hunt", status: "Not Started", progress: 0 },
+  { id: "M05", name: "Prompt Entropy", status: "Not Started", progress: 0 },
 ];
 
 export default function DashboardPage() {
@@ -60,43 +51,43 @@ export default function DashboardPage() {
       </div>
 
       <nav className="flex-1 px-4 space-y-1">
-        <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-4 mb-4">Command Center</div>
-        <Link href="/dashboard" className="flex items-center gap-3 px-4 py-2.5 bg-accent/10 text-accent rounded-none border-l-2 border-accent text-sm font-bold uppercase tracking-wider">
+        <div className="text-[11px] font-semibold text-muted-foreground/60 uppercase tracking-wider px-4 mb-4">Command Center</div>
+        <Link href="/dashboard" className="flex items-center gap-3 px-4 py-2.5 bg-accent/5 text-accent rounded-lg text-sm font-medium tracking-tight">
           <LayoutDashboard className="w-4 h-4" /> Dashboard
         </Link>
-        <Link href="/challenges" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-bold uppercase tracking-wider">
+        <Link href="/challenges" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium tracking-tight">
           <Terminal className="w-4 h-4" /> Simulations
         </Link>
-        <Link href="/certificates" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-bold uppercase tracking-wider">
+        <Link href="/certificates" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium tracking-tight">
           <Award className="w-4 h-4" /> Certification
         </Link>
 
         <div className="pt-8 mb-4">
-          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-4 mb-4">Active Streams</div>
+          <div className="text-[11px] font-semibold text-muted-foreground/60 uppercase tracking-wider px-4 mb-4">Active Streams</div>
           {STREAMS.map(stream => (
-            <div key={stream.id} className={`flex items-center justify-between px-4 py-2.5 text-sm font-bold uppercase tracking-wider ${stream.active ? 'text-foreground' : 'text-muted-foreground/40 cursor-not-allowed'}`}>
+            <div key={stream.id} className={`flex items-center justify-between px-4 py-2.5 text-sm font-medium tracking-tight ${stream.active ? 'text-foreground' : 'text-muted-foreground/40 cursor-not-allowed'}`}>
               <div className="flex items-center gap-3">
                 {stream.icon} {stream.name}
               </div>
-              {stream.status && <span className="text-[8px] border border-border px-1.5 py-0.5 whitespace-nowrap">{stream.status}</span>}
+              {stream.status && <span className="text-[9px] border border-border px-1.5 py-0.5 rounded text-muted-foreground">{stream.status}</span>}
             </div>
           ))}
         </div>
       </nav>
 
-      <div className="p-4 border-t border-border space-y-2">
-        <button className="flex items-center gap-3 w-full px-4 py-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-all uppercase tracking-wider">
+      <div className="p-4 border-t border-border space-y-4">
+        <button className="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-all tracking-tight capitalize">
           <Settings className="w-4 h-4" /> Settings
         </button>
-        <div className="flex items-center justify-between p-4 bg-muted/20 border border-border">
-           <div className="flex items-center gap-3 overflow-hidden">
-             <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-accent flex items-center justify-center text-background text-xs font-bold shrink-0">JD</div>
-             <div className="flex flex-col overflow-hidden">
-               <span className="text-[10px] font-bold uppercase tracking-tight truncate">John Doe</span>
-               <span className="text-[9px] text-muted-foreground uppercase tracking-widest truncate">Entry Level</span>
-             </div>
-           </div>
-           <ThemeToggle />
+        <div className="flex items-center justify-between p-3 bg-muted/20 border border-border rounded-lg">
+            <div className="flex items-center gap-3 overflow-hidden">
+              <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-background text-[10px] font-bold shrink-0">PA</div>
+              <div className="flex flex-col overflow-hidden leading-tight">
+                <span className="text-sm font-bold tracking-tight truncate">Professional Auditor</span>
+                <span className="text-[10px] text-muted-foreground truncate">Verification Pending</span>
+              </div>
+            </div>
+            <ThemeToggle />
         </div>
       </div>
     </>
@@ -123,15 +114,15 @@ export default function DashboardPage() {
                  <SidebarContent />
                </SheetContent>
              </Sheet>
-             <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground hidden sm:block whitespace-nowrap">Engineering Stream</h2>
-             <ChevronRight className="w-3 h-3 text-muted-foreground hidden sm:block" />
-             <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-widest truncate">Auditor Dashboard</h2>
+             <h2 className="text-xs font-semibold text-muted-foreground hidden sm:block whitespace-nowrap tracking-tight">Engineering Stream</h2>
+             <ChevronRight className="w-3 h-3 text-muted-foreground/30 hidden sm:block" />
+             <h2 className="text-xs font-bold tracking-tight truncate">Auditor Dashboard</h2>
            </div>
            <div className="flex items-center gap-4 md:gap-6">
-              <div className="hidden lg:flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-widest whitespace-nowrap">
-                <Shield className="w-3 h-3" /> System Status: Operational
+              <div className="hidden lg:flex items-center gap-2 text-xs font-medium text-muted-foreground whitespace-nowrap">
+                <Shield className="w-3 h-3 text-accent/60" /> System Status: <span className="text-foreground">Operational</span>
               </div>
-              <Button size="sm" variant="outline" className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest rounded-none h-8 px-3 md:px-4 whitespace-nowrap">
+              <Button size="sm" variant="outline" className="text-xs font-semibold tracking-tight rounded-lg h-9 px-4">
                 Daily Drill
               </Button>
            </div>
@@ -141,24 +132,24 @@ export default function DashboardPage() {
           {/* Welcome & Overview */}
           <div className="flex flex-col md:flex-row justify-between items-start gap-8">
             <div className="space-y-2">
-              <h1 className="text-4xl font-bold tracking-tighter uppercase">Welcome, Auditor.</h1>
-              <p className="text-muted-foreground leading-relaxed italic pr-4">
-                &quot;The gap between code and value is filled by judgment.&quot; - System Message
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Welcome, Auditor.</h1>
+              <p className="text-muted-foreground leading-relaxed italic pr-4 border-l-2 border-accent/20 pl-4">
+                &quot;The gap between code and value is filled by judgment.&quot;
               </p>
             </div>
             
-            <div className="grid grid-cols-3 gap-1 px-1 bg-border border border-border shrink-0">
+            <div className="grid grid-cols-3 gap-1 px-1 bg-border border border-border rounded-lg overflow-hidden shrink-0 shadow-sm">
                <div className="bg-background pt-4 pb-6 px-10 text-center space-y-1 group hover:bg-muted/30 transition-colors">
-                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Audit XP</div>
-                 <div className="text-3xl font-bold tracking-tighter">1,240</div>
+                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-2">Audit XP</div>
+                 <div className="text-3xl font-bold tracking-tight">0</div>
                </div>
                <div className="bg-background pt-4 pb-6 px-10 text-center space-y-1 group hover:bg-muted/30 transition-colors">
-                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Certified</div>
-                 <div className="text-3xl font-bold tracking-tighter">02</div>
+                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-2">Certified</div>
+                 <div className="text-3xl font-bold tracking-tight">0</div>
                </div>
                <div className="bg-background pt-4 pb-6 px-10 text-center space-y-1 group hover:bg-muted/30 transition-colors">
-                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Trust Rank</div>
-                 <div className="text-3xl font-bold tracking-tighter">#412</div>
+                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 mb-2">Rank</div>
+                 <div className="text-3xl font-bold tracking-tight text-muted-foreground/30">--</div>
                </div>
             </div>
           </div>
@@ -168,58 +159,73 @@ export default function DashboardPage() {
             <div className="lg:col-span-2 space-y-12">
               {/* Active Mastery Level */}
               <section className="space-y-6">
-                <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">Active Mastery Path</h3>
-                {ENROLLED_COURSES.map(course => (
-                  <Card key={course.id} className="rounded-none border-border shadow-none bg-muted/5 group overflow-hidden">
-                    <CardHeader className="flex flex-row items-start justify-between pb-2">
-                      <div className="space-y-1">
-                        <div className="text-[10px] font-bold text-accent uppercase tracking-widest">{course.level}</div>
-                        <CardTitle className="text-2xl font-bold uppercase tracking-tight">{course.title}</CardTitle>
-                      </div>
-                      <div className="flex gap-2">
-                         <span className="text-[10px] font-bold px-2 py-1 bg-accent text-background uppercase tracking-widest">{course.status}</span>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-6 pt-4">
-                       <div className="space-y-2">
-                          <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest mb-1">
-                            <span>Level Progress</span>
-                            <span>{course.progress}%</span>
-                          </div>
-                          <div className="h-1 bg-border w-full">
-                            <div className="h-full bg-accent transition-all duration-500" style={{ width: `${course.progress}%` }} />
-                          </div>
-                       </div>
-                       <div className="flex items-center gap-4 bg-background p-4 border border-border">
-                          <Terminal className="w-5 h-5 text-muted-foreground" />
-                          <div className="flex-1">
-                            <div className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Up Next</div>
-                            <div className="text-sm font-bold uppercase tracking-tight">{course.nextTask}</div>
-                          </div>
-                          <Button size="sm" className="rounded-none h-8 px-6 bg-foreground text-background text-[10px] font-bold uppercase tracking-widest hover:bg-foreground/90">
-                            Resume Audit
-                          </Button>
-                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                <h3 className="text-sm font-bold tracking-tight text-muted-foreground">Active Mastery Path</h3>
+                {ENROLLED_COURSES.length > 0 ? (
+                  ENROLLED_COURSES.map(course => (
+                    <Card key={course.id} className="rounded-none border-border shadow-none bg-muted/5 group overflow-hidden">
+                      <CardHeader className="flex flex-row items-start justify-between pb-2">
+                        <div className="space-y-1">
+                          <div className="text-[10px] font-bold text-accent uppercase tracking-widest">{course.level}</div>
+                          <CardTitle className="text-2xl font-bold uppercase tracking-tight">{course.title}</CardTitle>
+                        </div>
+                        <div className="flex gap-2">
+                           <span className="text-[10px] font-bold px-2 py-1 bg-accent text-background uppercase tracking-widest">{course.status}</span>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-6 pt-4">
+                         <div className="space-y-2">
+                            <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest mb-1">
+                              <span>Level Progress</span>
+                              <span>{course.progress}%</span>
+                            </div>
+                            <div className="h-1 bg-border w-full">
+                              <div className="h-full bg-accent transition-all duration-500" style={{ width: `${course.progress}%` }} />
+                            </div>
+                         </div>
+                         <div className="flex items-center gap-4 bg-background p-4 border border-border">
+                            <Terminal className="w-5 h-5 text-muted-foreground" />
+                            <div className="flex-1">
+                              <div className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">Up Next</div>
+                              <div className="text-sm font-bold uppercase tracking-tight">{course.nextTask}</div>
+                            </div>
+                            <Button size="sm" className="rounded-none h-8 px-6 bg-foreground text-background text-[10px] font-bold uppercase tracking-widest hover:bg-foreground/90">
+                              Resume Audit
+                            </Button>
+                         </div>
+                      </CardContent>
+                    </Card>
+                  ))
+                ) : (
+                  <div className="border border-dashed border-border p-12 flex flex-col items-center justify-center gap-6 bg-muted/5 rounded-2xl">
+                     <Brain className="w-10 h-10 text-muted-foreground/10" />
+                     <div className="text-center space-y-2">
+                       <p className="text-base font-bold tracking-tight text-foreground">No active path detected.</p>
+                       <p className="text-sm text-muted-foreground max-w-[240px] leading-relaxed">
+                         Rewire your mental model by enrolling in your first audit tract.
+                       </p>
+                     </div>
+                     <Link href="/curriculum">
+                       <Button size="lg" className="rounded-full text-xs font-bold tracking-tight px-10 h-12">Browse Curriculum</Button>
+                     </Link>
+                  </div>
+                )}
               </section>
 
               {/* Advanced Levels (Locked) */}
               <section className="space-y-6">
-                <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">Locked Mastery Levels</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
+                <h3 className="text-sm font-bold tracking-tight text-muted-foreground">Mastering Next-Gen Intelligence</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {AVAILABLE_LEVELS.map(level => (
-                    <div key={level.id} className="bg-background p-6 space-y-6 group hover:bg-muted/10 transition-colors">
+                    <Card key={level.id} className="bg-muted/5 border-border p-6 space-y-6 group hover:border-accent/30 transition-colors rounded-xl shadow-none">
                       <div className="space-y-1">
-                        <div className="text-[9px] font-bold text-muted-foreground/50 uppercase tracking-widest">{level.level}</div>
-                        <h4 className="text-sm font-bold uppercase tracking-tight leading-snug">{level.name}</h4>
+                        <div className="text-[10px] font-bold text-accent uppercase tracking-widest">{level.level}</div>
+                        <h4 className="text-sm font-bold tracking-tight leading-snug">{level.name}</h4>
                       </div>
-                      <div className="flex justify-between items-center bg-muted/10 p-2 text-xs font-bold">
-                        <Lock className="w-3 h-3 text-muted-foreground/40" />
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground/60">Professional Audit Required</span>
+                      <div className="flex justify-between items-center bg-background border border-border p-2.5 rounded-lg text-xs font-bold">
+                        <Lock className="w-3.5 h-3.5 text-muted-foreground/30" />
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground/50">Locked</span>
                       </div>
-                    </div>
+                    </Card>
                   ))}
                 </div>
               </section>
@@ -228,43 +234,43 @@ export default function DashboardPage() {
             {/* Right Col: Micro-Certs & Stats */}
             <div className="space-y-12">
               <section className="space-y-6">
-                <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">Micro-Certification Matrix</h3>
-                <div className="space-y-px bg-border border border-border">
+                <h3 className="text-sm font-bold tracking-tight text-muted-foreground">Micro-Certifications</h3>
+                <div className="space-y-3">
                   {MICRO_CERTS_STATUS.map(cert => (
-                    <div key={cert.id} className="bg-background flex items-center justify-between p-4 px-6 group transition-colors hover:bg-muted/10">
+                    <div key={cert.id} className="bg-muted/5 border border-border flex items-center justify-between p-4 rounded-xl group transition-all hover:bg-muted/10">
                        <div className="space-y-1">
                           <div className="text-[9px] font-bold text-accent uppercase tracking-widest">{cert.id}</div>
-                          <div className="text-xs font-bold uppercase tracking-tight">{cert.name}</div>
+                          <div className="text-xs font-bold tracking-tight">{cert.name}</div>
                        </div>
                        <div className="flex items-center gap-4">
                          {cert.status === "Certified" ? (
                            <CheckCircle2 className="w-5 h-5 text-accent" />
                          ) : cert.status === "In Progress" ? (
-                           <div className="w-10 h-10 border-2 border-border border-t-accent rounded-full animate-spin flex items-center justify-center text-[8px] font-bold italic" style={{ animationDuration: '3s' }}>
+                           <div className="w-9 h-9 border-2 border-border border-t-accent rounded-full animate-spin flex items-center justify-center text-[8px] font-bold italic" style={{ animationDuration: '3s' }}>
                              {cert.progress}%
                            </div>
                          ) : (
-                           <Circle className="w-5 h-5 text-muted-foreground/20" />
+                           <Circle className="w-5 h-5 text-muted-foreground/10" />
                          )}
                        </div>
                     </div>
                   ))}
                 </div>
-                <Button variant="outline" className="w-full h-12 rounded-none border-border font-bold uppercase tracking-widest text-[10px] hover:bg-foreground hover:text-background transition-all">
-                  Browse All Micro-Certs
+                <Button variant="ghost" className="w-full h-12 rounded-xl border border-border font-bold tracking-tight text-xs hover:bg-accent/5 hover:text-accent transition-all">
+                  Browse All
                 </Button>
               </section>
 
               {/* Tooltip/Manifesto */}
-              <Card className="rounded-none border-border shadow-none bg-accent/5">
-                <CardHeader className="pb-4">
-                  <h4 className="text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+              <Card className="rounded-2xl border-accent/20 shadow-none bg-accent/5 overflow-hidden border-2">
+                <CardHeader className="pb-3 pt-6 px-6">
+                  <h4 className="text-sm font-bold tracking-tight flex items-center gap-2">
                     <Info className="w-4 h-4 text-accent" /> Auditor Notice
                   </h4>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-xs text-muted-foreground leading-relaxed italic">
-                    Level 1 Certification unlocks the &quot;Legacy Refactoring&quot; simulation path. Complete Case Study E1-03 to proceed.
+                <CardContent className="px-6 pb-6 pt-0">
+                  <p className="text-sm text-muted-foreground leading-relaxed italic">
+                    Level 1 Certification unlocks the &quot;Legacy Refactoring&quot; simulation path. Complete E1-03 to proceed.
                   </p>
                 </CardContent>
               </Card>

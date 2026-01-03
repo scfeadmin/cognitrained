@@ -25,7 +25,7 @@ export function AuthLayout({ children, title, subtitle, description }: AuthLayou
               <Image src="/cognitrained-black.png" alt="Logo" fill className="object-contain dark:hidden" />
               <Image src="/cognitrained-white.png" alt="Logo" fill className="object-contain hidden dark:block" />
             </div>
-            <span className="text-lg font-bold tracking-tight uppercase">Cognitrained</span>
+            <span className="text-xl font-bold tracking-tight">Cognitrained</span>
           </Link>
         </div>
 
@@ -44,14 +44,14 @@ export function AuthLayout({ children, title, subtitle, description }: AuthLayou
             <div className="flex gap-4">
               <Shield className="w-6 h-6 text-accent shrink-0" />
               <div>
-                <h4 className="font-bold uppercase tracking-widest text-[10px] mb-1">Secure Learning</h4>
+                <h4 className="font-bold tracking-tight text-xs mb-1">Secure Learning</h4>
                 <p className="text-sm text-muted-foreground leading-snug">Every simulation is isolated to ensure a focused, high-stakes training environment.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <Lock className="w-6 h-6 text-accent shrink-0" />
               <div>
-                <h4 className="font-bold uppercase tracking-widest text-[10px] mb-1">Trackable Mastery</h4>
+                <h4 className="font-bold tracking-tight text-xs mb-1">Trackable Mastery</h4>
                 <p className="text-sm text-muted-foreground leading-snug">Your progress and certifications are securely tracked and verifiable by employers.</p>
               </div>
             </div>
@@ -72,7 +72,7 @@ export function AuthLayout({ children, title, subtitle, description }: AuthLayou
                 <Image src="/cognitrained-black.png" alt="Logo" fill className="object-contain dark:hidden" />
                 <Image src="/cognitrained-white.png" alt="Logo" fill className="object-contain hidden dark:block" />
               </div>
-              <span className="text-base font-bold tracking-tight uppercase">Cognitrained</span>
+              <span className="text-lg font-bold tracking-tight">Cognitrained</span>
             </Link>
           </div>
 

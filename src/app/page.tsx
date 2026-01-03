@@ -12,7 +12,7 @@ export default function Home() {
         {/* Typographic Hero */}
         <section className="px-8 py-32 md:py-48 border-b border-border relative overflow-hidden">
           <div className="max-w-4xl mx-auto relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/50 text-[10px] font-bold uppercase tracking-widest mb-8 text-muted-foreground">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/50 text-[10px] font-bold uppercase tracking-widest mb-8 text-muted-foreground/60">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
@@ -33,7 +33,7 @@ export default function Home() {
               <Link href="/curriculum" className="btn-primary px-8 py-4 text-lg">
                 Explore the Hardcore Track
               </Link>
-              <Link href="/framework" className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors">
+              <Link href="/framework" className="group flex items-center gap-2 text-sm font-bold tracking-tight hover:text-accent transition-colors">
                 The Judgment Gap Manifesto <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -52,7 +52,7 @@ export default function Home() {
                 <div className="w-10 h-10 border border-border flex items-center justify-center bg-background">
                   <Shield className="w-5 h-5 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold uppercase tracking-tight">Adversarial Auditing</h3>
+                <h3 className="text-xl font-bold tracking-tight">Adversarial Auditing</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   Treat AI output as a liability. Our simulations purposefully introduce subtle architectural flaws to verify your audit rigor.
                 </p>
@@ -62,7 +62,7 @@ export default function Home() {
                 <div className="w-10 h-10 border border-border flex items-center justify-center bg-background">
                   <Zap className="w-5 h-5 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold uppercase tracking-tight">Atomic Intent</h3>
+                <h3 className="text-xl font-bold tracking-tight">Atomic Intent</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   Move beyond &quot;chatting.&quot; Master the art of deterministic specification and decomposition that survives AI non-determinism.
                 </p>
@@ -72,7 +72,7 @@ export default function Home() {
                 <div className="w-10 h-10 border border-border flex items-center justify-center bg-background">
                   <Brain className="w-5 h-5 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold uppercase tracking-tight">Systemic Ownership</h3>
+                <h3 className="text-xl font-bold tracking-tight">Systemic Ownership</h3>
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   Understand the ripples. Certify your ability to manage &quot;AI Drift&quot; and retain cognitive ownership of automated codebases.
                 </p>
@@ -84,7 +84,7 @@ export default function Home() {
         {/* Proof Section */}
         <section className="px-8 py-32 bg-background border-b border-border">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase italic">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter italic">
               AI speed is a commodity. <br />
               Judgment is a defensible advantage.
             </h2>
@@ -96,7 +96,7 @@ export default function Home() {
 
         {/* Final CTA */}
         <section className="px-8 py-24 flex flex-col items-center justify-center text-center space-y-12">
-          <h3 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase leading-none">
+          <h3 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none">
             Ready for the <br /> Cognitive Reset?
           </h3>
           <div className="flex gap-6">

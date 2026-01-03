@@ -38,7 +38,7 @@ export default function Framework() {
         <section className="px-8 py-32 md:py-48 border-b border-border bg-muted/5 relative">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="space-y-4">
-              <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent">Technical Manifesto v1.0</div>
+              <div className="text-[11px] font-bold text-accent uppercase tracking-widest">Technical Manifesto v1.0</div>
               <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-none">
                 Closing the <br />
                 <span className="text-muted-foreground italic">Judgment Gap.</span>
@@ -64,7 +64,7 @@ export default function Framework() {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
               <div className="bg-background p-12 space-y-8">
-                <h3 className="text-2xl font-bold uppercase tracking-tight text-muted-foreground/50">Current Industry Pulse</h3>
+                <h3 className="text-2xl font-bold tracking-tight text-muted-foreground/60">Current Industry Pulse</h3>
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <h4 className="font-bold uppercase tracking-widest text-xs">Output Obsession</h4>
@@ -82,7 +82,7 @@ export default function Framework() {
               </div>
               
               <div className="bg-background p-12 space-y-8 border-l border-border">
-                <h3 className="text-2xl font-bold uppercase tracking-tight text-accent">The Cognitrained Reset</h3>
+                <h3 className="text-2xl font-bold tracking-tight text-accent">The Cognitrained Reset</h3>
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <h4 className="font-bold uppercase tracking-widest text-xs">Adversarial Auditing</h4>
@@ -106,7 +106,7 @@ export default function Framework() {
         <section className="px-8 py-32 bg-muted/20 overflow-hidden relative">
           <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-24 space-y-4">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase">The Cognitive Loop</h2>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight">The Cognitive Loop</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">
                 Our proprietary four-phase evaluation logic built into every simulation.
               </p>
@@ -119,7 +119,7 @@ export default function Framework() {
                     {phase.icon}
                   </div>
                   <div className="space-y-3">
-                    <h3 className="text-xl font-bold uppercase tracking-tight">{phase.title}</h3>
+                    <h3 className="text-xl font-bold tracking-tight">{phase.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {phase.description}
                     </p>
