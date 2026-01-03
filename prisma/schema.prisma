@@ -1,0 +1,121 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(cuid())
+  email         String?         @unique
+  name          String?
+  image         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  submissions   Submission[]
+  certifications Certification[]
+}
+
+model Stream {
+  id          String   @id @default(cuid())
+  name        String   @unique // e.g., "Engineering", "Product"
+  description String
+  courses     Course[]
+  challenges  Challenge[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Course {
+  id          String      @id @default(cuid())
+  title       String
+  description String
+  tier        Int         @default(1) // 1-3 for Paid Courses
+  streamId    String
+  stream      Stream      @relation(fields: [streamId], references: [id])
+  challenges  Challenge[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Challenge {
+  id              String       @id @default(cuid())
+  title           String
+  description     String
+  difficulty      Difficulty   @default(BEGINNER)
+  type            ChallengeType
+  tier            Int          @default(0) // 0 for Micro-Cert, 1-3 inherited from Course if applicable
+  streamId        String
+  courseId        String?      // Optional: Micro-certs might not belong to a main course
+  mentalModels    String[]     // List of mental models evaluated
+  timeEstimate    Int          // in minutes
+  repoUrl         String?      // Link to isolated repo or template
+  rubric          Json         // Evaluation criteria
+  stream          Stream       @relation(fields: [streamId], references: [id])
+  course          Course?      @relation(fields: [courseId], references: [id])
+  submissions     Submission[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum ChallengeType {
+  PROMPT_ONLY
+  BUG_FIXING
+  REFACTORING
+  SYSTEM_DESIGN
+}
+
+model Submission {
+  id                String             @id @default(cuid())
+  userId            String
+  challengeId       String
+  promptHistory     Json               // Array of prompts sent to AI
+  codeDiff          String?            // Final code changes if applicable
+  testOutcomes      Json?              // Results of tests run
+  status            SubmissionStatus   @default(PENDING)
+  evaluation        Json?              // AI feedback and senior guidance
+  overallScore      Float?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  user              User               @relation(fields: [userId], references: [id])
+  challenge         Challenge          @relation(fields: [challengeId], references: [id])
+  mentalModelScores MentalModelScore[]
+}
+
+enum SubmissionStatus {
+  PENDING
+  PASSED
+  FAILED
+}
+
+model MentalModelScore {
+  id            String     @id @default(cuid())
+  submissionId  String
+  modelName     String     // e.g., "AI as Intern", "Spec-first thinking"
+  score         Float      // 0 to 1
+  reasoning     String
+  submission    Submission @relation(fields: [submissionId], references: [id])
+}
+
+model Certification {
+  id              String   @id @default(cuid())
+  userId          String
+  tier            Int
+  stream          String   @default("Engineering")
+  issueDate       DateTime @default(now())
+  verificationUrl String   @unique
+  badgeUrl        String?
+  user            User     @relation(fields: [userId], references: [id])
+}
