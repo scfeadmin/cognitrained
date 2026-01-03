@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Brain, Code, Microscope, Terminal, Shield, Zap, Target } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Navbar } from "@/components/navbar";
 
 const LOOP_PHASES = [
   {
@@ -31,26 +31,7 @@ const LOOP_PHASES = [
 export default function Framework() {
   return (
     <div className="flex flex-col min-h-screen selection:bg-accent/20">
-      {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-6 border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="flex items-center gap-2.5">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="relative w-8 h-8">
-              <Image src="/cognitrained-black.png" alt="Logo" fill className="object-contain dark:hidden" />
-              <Image src="/cognitrained-white.png" alt="Logo" fill className="object-contain hidden dark:block" />
-            </div>
-            <span className="text-lg font-bold tracking-tight uppercase">Cognitrained</span>
-          </Link>
-        </div>
-        <div className="flex items-center gap-8">
-          <Link href="/curriculum" className="nav-link">Curriculum</Link>
-          <Link href="/framework" className="nav-link text-accent">Framework</Link>
-          <Link href="/pricing" className="nav-link">Pricing</Link>
-          <div className="h-4 w-[1px] bg-border mx-2" />
-          <ThemeToggle />
-          <Link href="/auth" className="btn-primary">Get Started</Link>
-        </div>
-      </nav>
+      <Navbar />
 
       <main className="flex-1">
         {/* Research Paper Header */}

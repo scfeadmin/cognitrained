@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { 
   ArrowRight, Brain, Code, Microscope, Terminal, Shield, Zap, 
   Settings, User, LogOut, CheckCircle2, Circle, Clock, Award,
-  ChevronRight, LayoutDashboard, Database, Globe, Lock, Info
+  ChevronRight, LayoutDashboard, Database, Globe, Lock, Info, Menu
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const STREAMS = [
   { id: "eng", name: "Engineering", active: true, icon: <Code className="w-4 h-4" /> },
@@ -43,76 +45,94 @@ const MICRO_CERTS_STATUS = [
 ];
 
 export default function DashboardPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const SidebarContent = () => (
+    <>
+      <div className="p-6 pb-12">
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="relative w-6 h-6 md:w-7 md:h-7">
+            <Image src="/cognitrained-black.png" alt="Logo" fill className="object-contain dark:hidden" />
+            <Image src="/cognitrained-white.png" alt="Logo" fill className="object-contain hidden dark:block" />
+          </div>
+          <span className="text-sm font-bold tracking-tight uppercase">Cognitrained</span>
+        </Link>
+      </div>
+
+      <nav className="flex-1 px-4 space-y-1">
+        <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-4 mb-4">Command Center</div>
+        <Link href="/dashboard" className="flex items-center gap-3 px-4 py-2.5 bg-accent/10 text-accent rounded-none border-l-2 border-accent text-sm font-bold uppercase tracking-wider">
+          <LayoutDashboard className="w-4 h-4" /> Dashboard
+        </Link>
+        <Link href="/challenges" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-bold uppercase tracking-wider">
+          <Terminal className="w-4 h-4" /> Simulations
+        </Link>
+        <Link href="/certificates" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-bold uppercase tracking-wider">
+          <Award className="w-4 h-4" /> Certification
+        </Link>
+
+        <div className="pt-8 mb-4">
+          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-4 mb-4">Active Streams</div>
+          {STREAMS.map(stream => (
+            <div key={stream.id} className={`flex items-center justify-between px-4 py-2.5 text-sm font-bold uppercase tracking-wider ${stream.active ? 'text-foreground' : 'text-muted-foreground/40 cursor-not-allowed'}`}>
+              <div className="flex items-center gap-3">
+                {stream.icon} {stream.name}
+              </div>
+              {stream.status && <span className="text-[8px] border border-border px-1.5 py-0.5 whitespace-nowrap">{stream.status}</span>}
+            </div>
+          ))}
+        </div>
+      </nav>
+
+      <div className="p-4 border-t border-border space-y-2">
+        <button className="flex items-center gap-3 w-full px-4 py-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-all uppercase tracking-wider">
+          <Settings className="w-4 h-4" /> Settings
+        </button>
+        <div className="flex items-center justify-between p-4 bg-muted/20 border border-border">
+           <div className="flex items-center gap-3 overflow-hidden">
+             <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-accent flex items-center justify-center text-background text-xs font-bold shrink-0">JD</div>
+             <div className="flex flex-col overflow-hidden">
+               <span className="text-[10px] font-bold uppercase tracking-tight truncate">John Doe</span>
+               <span className="text-[9px] text-muted-foreground uppercase tracking-widest truncate">Entry Level</span>
+             </div>
+           </div>
+           <ThemeToggle />
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div className="flex h-screen bg-background overflow-hidden selection:bg-accent/20">
-      {/* Sidebar - Institutional Sidebar */}
-      <aside className="w-64 border-r border-border flex flex-col bg-muted/5">
-        <div className="p-6 pb-12">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="relative w-7 h-7">
-              <Image src="/cognitrained-black.png" alt="Logo" fill className="object-contain dark:hidden" />
-              <Image src="/cognitrained-white.png" alt="Logo" fill className="object-contain hidden dark:block" />
-            </div>
-            <span className="text-sm font-bold tracking-tight uppercase">Cognitrained</span>
-          </Link>
-        </div>
-
-        <nav className="flex-1 px-4 space-y-1">
-          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-4 mb-4">Command Center</div>
-          <Link href="/dashboard" className="flex items-center gap-3 px-4 py-2.5 bg-accent/10 text-accent rounded-none border-l-2 border-accent text-sm font-bold uppercase tracking-wider">
-            <LayoutDashboard className="w-4 h-4" /> Dashboard
-          </Link>
-          <Link href="/challenges" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-bold uppercase tracking-wider">
-            <Terminal className="w-4 h-4" /> Simulations
-          </Link>
-          <Link href="/certificates" className="flex items-center gap-3 px-4 py-2.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-bold uppercase tracking-wider">
-            <Award className="w-4 h-4" /> Certification
-          </Link>
-
-          <div className="pt-8 mb-4">
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-4 mb-4">Active Streams</div>
-            {STREAMS.map(stream => (
-              <div key={stream.id} className={`flex items-center justify-between px-4 py-2.5 text-sm font-bold uppercase tracking-wider ${stream.active ? 'text-foreground' : 'text-muted-foreground/40 cursor-not-allowed'}`}>
-                <div className="flex items-center gap-3">
-                  {stream.icon} {stream.name}
-                </div>
-                {stream.status && <span className="text-[8px] border border-border px-1.5 py-0.5">{stream.status}</span>}
-              </div>
-            ))}
-          </div>
-        </nav>
-
-        <div className="p-4 border-t border-border space-y-2">
-          <button className="flex items-center gap-3 w-full px-4 py-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-all uppercase tracking-wider">
-            <Settings className="w-4 h-4" /> Settings
-          </button>
-          <div className="flex items-center justify-between p-4 bg-muted/20 border border-border">
-             <div className="flex items-center gap-3">
-               <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-background text-xs font-bold">JD</div>
-               <div className="flex flex-col">
-                 <span className="text-[10px] font-bold uppercase tracking-tight">John Doe</span>
-                 <span className="text-[9px] text-muted-foreground uppercase tracking-widest">Entry Level</span>
-               </div>
-             </div>
-             <ThemeToggle />
-          </div>
-        </div>
+      {/* Sidebar - Desktop */}
+      <aside className="w-64 border-r border-border hidden md:flex flex-col bg-muted/5">
+        <SidebarContent />
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto bg-background">
-        <header className="h-16 border-b border-border flex items-center justify-between px-8 bg-background/80 backdrop-blur-md sticky top-0 z-40">
-           <div className="flex items-center gap-4">
-             <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Engineering Stream</h2>
-             <ChevronRight className="w-3 h-3 text-muted-foreground" />
-             <h2 className="text-xs font-bold uppercase tracking-widest">Auditor Dashboard</h2>
+        <header className="h-16 border-b border-border flex items-center justify-between px-4 md:px-8 bg-background/80 backdrop-blur-md sticky top-0 z-40">
+           <div className="flex items-center gap-2 md:gap-4 overflow-hidden">
+             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+               <SheetTrigger asChild>
+                 <button className="p-2 -ml-2 md:hidden text-muted-foreground">
+                   <Menu className="w-5 h-5" />
+                 </button>
+               </SheetTrigger>
+               <SheetContent side="left" className="w-64 p-0 border-r border-border bg-background flex flex-col">
+                 <SidebarContent />
+               </SheetContent>
+             </Sheet>
+             <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground hidden sm:block whitespace-nowrap">Engineering Stream</h2>
+             <ChevronRight className="w-3 h-3 text-muted-foreground hidden sm:block" />
+             <h2 className="text-[10px] md:text-xs font-bold uppercase tracking-widest truncate">Auditor Dashboard</h2>
            </div>
-           <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-widest">
+           <div className="flex items-center gap-4 md:gap-6">
+              <div className="hidden lg:flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-widest whitespace-nowrap">
                 <Shield className="w-3 h-3" /> System Status: Operational
               </div>
-              <Button size="sm" variant="outline" className="text-[10px] font-bold uppercase tracking-widest rounded-none h-8 px-4">
-                Begin Daily Drill
+              <Button size="sm" variant="outline" className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest rounded-none h-8 px-3 md:px-4 whitespace-nowrap">
+                Daily Drill
               </Button>
            </div>
         </header>

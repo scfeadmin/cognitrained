@@ -83,13 +83,13 @@ export default function AuthPage() {
       {/* Right Side: Auth Forms */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background relative overflow-hidden">
         <div className="w-full max-w-md space-y-8 relative z-10">
-          <div className="lg:hidden flex justify-center mb-12">
+          <div className="lg:hidden flex justify-center mb-8">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="relative w-8 h-8">
+              <div className="relative w-7 h-7">
                 <Image src="/cognitrained-black.png" alt="Logo" fill className="object-contain dark:hidden" />
                 <Image src="/cognitrained-white.png" alt="Logo" fill className="object-contain hidden dark:block" />
               </div>
-              <span className="text-lg font-bold tracking-tight uppercase">Cognitrained</span>
+              <span className="text-base font-bold tracking-tight uppercase">Cognitrained</span>
             </Link>
           </div>
 
